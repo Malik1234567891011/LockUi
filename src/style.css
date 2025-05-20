@@ -1,0 +1,233 @@
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+/* Lock Screen */
+#lock-screen {
+  height: 100vh;
+  width: 100vw;
+  background-color: #000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  z-index: 10;
+}
+
+.glow-ring {
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  box-shadow: 0 0 20px 10px rgba(255, 255, 255, 0.1);
+  animation: pulse 2s infinite ease-in-out;
+  pointer-events: none;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); opacity: 0.4; }
+  50% { transform: scale(1.2); opacity: 1; }
+}
+
+/* Tunnel */
+#tunnel {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  background: radial-gradient(circle at center, #111 0%, #000 100%);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  z-index: 5;
+}
+
+.streaks {
+  width: 200%;
+  height: 200%;
+  background: repeating-linear-gradient(0deg, rgba(255,255,255,0.05) 0 2px, transparent 2px 6px);
+  animation: tunnelMotion 1s linear infinite;
+  transform: rotate(45deg);
+}
+
+@keyframes tunnelMotion {
+  0% { transform: rotate(45deg) translateY(0); }
+  100% { transform: rotate(45deg) translateY(-20%); }
+}
+
+/* Paradise */
+#paradise {
+  display: none;
+  height: 100vh;
+  width: 100vw;
+  background: linear-gradient(to top, #a7e3b5, #d8f8ff);
+  overflow: hidden;
+  position: relative;
+  z-index: 1;
+}
+
+/* Sun */
+#sun-glow {
+  position: absolute;
+  top: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(255,255,200,0.3) 0%, transparent 80%);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Clouds */
+.clouds {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.cloud-svg {
+  position: absolute;
+  top: 50px;
+  width: 200px;
+  height: 60px;
+  opacity: 0.7;
+  animation: floatCloud 60s linear infinite;
+}
+
+.cloud-svg.delay {
+  top: 100px;
+  left: -300px;
+  animation-delay: 10s;
+}
+
+@keyframes floatCloud {
+  0% { transform: translateX(-300px); }
+  100% { transform: translateX(110vw); }
+}
+
+.grass-field {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 160px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: flex-end;
+  pointer-events: none;
+  z-index: 3;
+}
+
+.grass-field.layer-back {
+  opacity: 0.4;
+  transform: scaleY(0.9);
+  filter: blur(1px);
+  z-index: 2;
+}
+
+.grass-shadow {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 60px;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.15), transparent);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.blade {
+  width: 1px;
+  height: 60px;
+  background-color: green;
+  animation: sway 3s ease-in-out infinite alternate;
+  transform-origin: bottom center;
+  opacity: 0.7;
+}
+
+
+
+
+.blade.delay {
+  animation-delay: 1.2s;
+}
+
+@keyframes sway {
+  0%   { transform: rotate(0deg); }
+  50%  { transform: rotate(2deg); }
+  100% { transform: rotate(-2deg); }
+}
+
+/* Particles */
+.particles {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  background-image: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
+  background-size: 40px 40px;
+  animation: drift 20s linear infinite;
+  opacity: 0.4;
+}
+
+@keyframes drift {
+  0% { background-position: 0 0; }
+  100% { background-position: 200px 200px; }
+}
+
+#tree-container {
+  position: absolute;
+  bottom: 0px; /* or even 30px */
+  left: 80px;
+  z-index: 3;
+}
+
+
+#tree {
+  width: 100px;
+  height: auto;
+}
+
+#bird {
+  position: absolute;
+  top: 8px;
+  left: 55px;
+  cursor: pointer;
+  z-index: 4;
+}
+
+
+
+.bird-fly {
+  animation: fly-away 3s forwards;
+}
+
+@keyframes fly-away {
+  0% {
+    transform: translate(0, 0) rotate(0deg) scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: translate(100px, -100px) rotate(45deg) scale(1.2);
+    opacity: 0.7;
+  }
+  100% {
+    transform: translate(300px, -300px) rotate(720deg) scale(0);
+    opacity: 0;
+  }
+}
