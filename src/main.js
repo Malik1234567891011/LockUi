@@ -1,5 +1,7 @@
 import './style.css';
 import gsap from 'gsap';
+import { initWaterScene } from './water-scence.js';
+
 
 const shackle = document.getElementById('lock-shackle');
 const lockSvg = document.getElementById('lock-svg');
@@ -41,6 +43,9 @@ lockSvg.addEventListener('mouseenter', () => {
     ease: "power2.inOut",
     delay: 1.2
   });
+  tl.add(() => {
+    initWaterScene(); // <<<< WATER FLOOD START
+  }, "+=0.5");
 
   // Step 5: Hide tunnel, show paradise
   tl.add(() => {
