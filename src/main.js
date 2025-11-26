@@ -9,7 +9,12 @@ const lockScreen = document.getElementById('lock-screen');
 const tunnel = document.getElementById('tunnel');
 const paradise = document.getElementById('paradise');
 
-lockSvg.addEventListener('mouseenter', () => {
+if (!lockSvg || !shackle || !lockScreen || !tunnel || !paradise) {
+  console.error("Required DOM elements not found");
+}
+
+if (lockSvg) {
+  lockSvg.addEventListener('mouseenter', () => {
   const tl = gsap.timeline();
 
   // Step 1: Shackle animation
@@ -52,13 +57,18 @@ lockSvg.addEventListener('mouseenter', () => {
     tunnel.style.display = "none";
     paradise.style.display = "flex";
   });
-});
+  });
+}
 
 
 const grassField = document.getElementById('grass-field');
 const grassBack = document.getElementById('grass-field-back');
 
 function generateGrass(container, density) {
+  if (!container) {
+    console.error("Grass container not found");
+    return;
+  }
   for (let i = 0; i < density; i++) {
     const blade = document.createElement('div');
     blade.classList.add('blade');
@@ -70,18 +80,15 @@ function generateGrass(container, density) {
   }
 }
 
-generateGrass(grassField, 600);     // foreground blades
-generateGrass(grassBack, 600);      // blurry background
-
-
-
-
-window.addEventListener("DOMContentLoaded", () => {
-  generateGrass(); // generates 600 blades
-});
+if (grassField && grassBack) {
+  generateGrass(grassField, 600);     // foreground blades
+  generateGrass(grassBack, 600);      // blurry background
+}
 
 const bird = document.getElementById("bird");
-bird.addEventListener("click", () => {
-  bird.classList.add("bird-fly");
-});
+if (bird) {
+  bird.addEventListener("click", () => {
+    bird.classList.add("bird-fly");
+  });
+}
 
